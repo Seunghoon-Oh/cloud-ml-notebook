@@ -3,12 +3,10 @@ package service
 import "github.com/Seunghoon-Oh/cloud-ml-notebook-manager/data"
 
 func GetNotebooks() []string {
-	// notebooks := "notebook-1"
-	return data.GetNotebooksData()
+	return data.GetRedisData()
 }
 
 func CreateNotebook() string {
-
 	// TODO: Create Kubernetes Object
-	return data.CreateNotebookData()
+	return data.CreateRedisData()
 }

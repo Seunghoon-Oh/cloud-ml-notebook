@@ -29,7 +29,7 @@ func SetupRedisClient() {
 	}
 }
 
-func GetNotebooksData() (data []string) {
+func GetRedisData() (data []string) {
 	keys := rdb.Keys(ctx, "*").Val()
 	for _, key := range keys {
 		if key == "id" {
@@ -40,14 +40,12 @@ func GetNotebooksData() (data []string) {
 			fmt.Println(err)
 			panic(err)
 		}
-		// fmt.Println("key: ", key, "val:", val)
 		data = append(data, val)
 	}
 	return
 }
 
-func CreateNotebookData() string {
-
+func CreateRedisData() string {
 	id, err := rdb.Get(ctx, "id").Result()
 	if err != nil {
 		panic(err)
