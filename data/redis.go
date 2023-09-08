@@ -32,12 +32,15 @@ func SetupRedisClient() {
 func GetNotebooksData() (data []string) {
 	keys := rdb.Keys(ctx, "*").Val()
 	for _, key := range keys {
+		if key == "id" {
+			continue
+		}
 		val, err := rdb.Get(ctx, key).Result()
 		if err != nil {
 			fmt.Println(err)
 			panic(err)
 		}
-		fmt.Println("key: ", key, "val:", val)
+		// fmt.Println("key: ", key, "val:", val)
 		data = append(data, val)
 	}
 	return
