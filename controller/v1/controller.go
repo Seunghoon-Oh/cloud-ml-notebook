@@ -10,6 +10,13 @@ import (
 
 func GetNotebooks(c *gin.Context) {
 	data := service.GetNotebooks()
+	println(data)
+	// c.String(http.StatusOK, data)
+	c.JSON(http.StatusOK, gin.H{"data": data})
+}
+
+func CreateNotebook(c *gin.Context) {
+	data := service.CreateNotebook()
 	println("Response: " + data)
 	c.String(http.StatusOK, data)
 }
